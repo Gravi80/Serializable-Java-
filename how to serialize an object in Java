@@ -1,0 +1,24 @@
+Step 1: Get the object to serialize [can be null]. Let the object be o.
+Step 2: Get a valid ObectOutputStream instance. Let the ObjectOutputStream instance be out.
+Step 3: out.writeObject(o); will serialize the object to the stream.
+
+String s = new String(); //the object that we will serialize
+ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(“out.dat”));
+out.writeObject(s); //serialize the object
+
+
+
+ If there any members in a Serializable class, then the following guidelines apply:
+
+     i. If they are primitives, they are automatically serializable.
+
+    ii. If they are non-primitive objects, they must implement Serializable.
+       If we try to serialize an object that contains reference to an object that does not implement Serializable
+       then while serializing the object, we get a Runtime Exception.
+
+    iii. If we have a reference to a non-serializable object in our class,
+         then we have to mark the reference with the keyword transient.
+         The transient keyword on a reference means that when the parent object is serialized
+         then the object whose reference is marked as transient will not be serialized.
+
+
